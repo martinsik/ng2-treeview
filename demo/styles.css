@@ -1,0 +1,6 @@
+ms-treeview {
+    display: block;
+}
+ms-treeview > ms-treeview {
+    padding-left: 20px;
+}
