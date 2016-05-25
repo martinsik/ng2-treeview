@@ -1,0 +1,4 @@
+{
+  "files": ["demo/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "demo" }
+}
