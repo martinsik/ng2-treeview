@@ -2,6 +2,7 @@
   "name": "ms-treeview",
   "version": "0.0.1",
   "typings": "ms-treeview.d.ts",
+  "main" : "ms-treeview.js",
   "scripts": {
     "start": "npm run build-demo && npm run tscd && concurrently \"npm run tsc:wd\" \"npm run lite\" ",
     "lite": "lite-server",
