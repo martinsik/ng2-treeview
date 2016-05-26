@@ -1,13 +1,14 @@
 {
   "name": "ms-treeview",
   "version": "0.0.1",
+  "typings": "ms-treeview.d.ts",
   "scripts": {
     "start": "npm run build-demo && npm run tscd && concurrently \"npm run tsc:wd\" \"npm run lite\" ",
     "lite": "lite-server",
     "postinstall": "typings install",
     "build-demo": "npm run demosymlinks && npm run build && npm run tscd && cp .build/ms-treeview.embeded.js demo/.build/ms-treeview.embeded.js",
     "demosymlinks": "ln -fs ../node_modules ./demo && ln -fs ../typings ./demo",
-    "build": "npm run tsc && node pack.js",
+    "build": "npm run tsc && node pack.js && cp .build/ms-treeview.embeded.js ms-treeview.dist.js && cp .build/ms-treeview.d.ts ms-treeview.d.ts",
     "tsc": "tsc --declaration",
     "tscd": "tsc --project demo",
     "tsc:w": "tsc -w",
