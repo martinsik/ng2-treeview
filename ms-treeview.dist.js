@@ -79,8 +79,8 @@ System.register("ms-treeview/shared/tree-node", [], function(exports_2, context_
                     }
                     for (var _i = 0, _a = nodes; _i < _a.length; _i++) {
                         var node = _a[_i];
-                        node.parent = this;
                         this.childrenNodes.push(node);
+                        node.parent = this;
                     }
                 };
                 TreeNode.prototype.remove = function (node) {
