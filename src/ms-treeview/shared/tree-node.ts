@@ -51,8 +51,8 @@ export abstract class TreeNode implements TreeNodeInterface {
         }
 
         for (var node of <TreeNodeInterface[]>nodes) {
-            node.parent = this;
             this.childrenNodes.push(node);
+            node.parent = this;
         }
     }
 
