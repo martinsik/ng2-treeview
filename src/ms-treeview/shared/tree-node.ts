@@ -16,9 +16,33 @@ export abstract class TreeNode implements TreeNodeInterface {
         return this.parentNode;
     }
 
+    set parent(newParent: TreeNodeInterface) {
+        if (this.parentNode != newParent) {
+            if (this.parentNode) {
+                this.parentNode.remove(this);
+                this.parentNode = newParent;
+            }
+            if (newParent) {
+                this.parentNode = newParent;
+                if (!newParent.hasDirectAncestor(this)) {
+                    newParent.add(this);
+                }
+            }
+        }
+    }
+
     get children() {
         // console.log(this.childrenNodes);
         return this.childrenNodes;
+    }
+
+    hasDirectAncestor(node: TreeNodeInterface) {
+        for (var n of this.childrenNodes) {
+            if (n === node) {
+                return true;
+            }
+        }
+        return false;
     }
 
     add(nodes: TreeNodeInterface|TreeNodeInterface[]) {
@@ -27,6 +51,7 @@ export abstract class TreeNode implements TreeNodeInterface {
         }
 
         for (var node of <TreeNodeInterface[]>nodes) {
+            node.parent = this;
             this.childrenNodes.push(node);
         }
     }
@@ -35,7 +60,8 @@ export abstract class TreeNode implements TreeNodeInterface {
         for (var i = 0; i < this.childrenNodes.length; i++) {
             var n = this.childrenNodes[i];
             if (node === n) {
-                this.childrenNodes = this.childrenNodes.slice(i, 1);
+                var removed = this.childrenNodes.splice(i, 1)[0];
+                removed.parent = null;
                 return true;
             }
         }

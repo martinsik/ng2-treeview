@@ -15,16 +15,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 System.register("ms-treeview/shared/tree-node.interface", [], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var TreeNodeInterface;
     return {
         setters:[],
         execute: function() {
-            TreeNodeInterface = (function () {
-                function TreeNodeInterface() {
-                }
-                return TreeNodeInterface;
-            }());
-            exports_1("TreeNodeInterface", TreeNodeInterface);
         }
     }
 });
@@ -46,6 +39,20 @@ System.register("ms-treeview/shared/tree-node", [], function(exports_2, context_
                     get: function () {
                         return this.parentNode;
                     },
+                    set: function (newParent) {
+                        if (this.parentNode != newParent) {
+                            if (this.parentNode) {
+                                this.parentNode.remove(this);
+                                this.parentNode = newParent;
+                            }
+                            if (newParent) {
+                                this.parentNode = newParent;
+                                if (!newParent.hasDirectAncestor(this)) {
+                                    newParent.add(this);
+                                }
+                            }
+                        }
+                    },
                     enumerable: true,
                     configurable: true
                 });
@@ -57,12 +64,22 @@ System.register("ms-treeview/shared/tree-node", [], function(exports_2, context_
                     enumerable: true,
                     configurable: true
                 });
+                TreeNode.prototype.hasDirectAncestor = function (node) {
+                    for (var _i = 0, _a = this.childrenNodes; _i < _a.length; _i++) {
+                        var n = _a[_i];
+                        if (n === node) {
+                            return true;
+                        }
+                    }
+                    return false;
+                };
                 TreeNode.prototype.add = function (nodes) {
                     if (!Array.isArray(nodes)) {
                         nodes = [nodes];
                     }
                     for (var _i = 0, _a = nodes; _i < _a.length; _i++) {
                         var node = _a[_i];
+                        node.parent = this;
                         this.childrenNodes.push(node);
                     }
                 };
@@ -70,7 +87,8 @@ System.register("ms-treeview/shared/tree-node", [], function(exports_2, context_
                     for (var i = 0; i < this.childrenNodes.length; i++) {
                         var n = this.childrenNodes[i];
                         if (node === n) {
-                            this.childrenNodes = this.childrenNodes.slice(i, 1);
+                            var removed = this.childrenNodes.splice(i, 1)[0];
+                            removed.parent = null;
                             return true;
                         }
                     }
@@ -123,19 +141,16 @@ System.register("ms-treeview/shared/text-treenode", ["ms-treeview/shared/tree-no
         }
     }
 });
-System.register("ms-treeview/treeview/treeview.component", ['@angular/core', "ms-treeview/shared/tree-node.interface", "ms-treeview/shared/text-treenode", "ms-treeview/shared/tree-node-click.event"], function(exports_5, context_5) {
+System.register("ms-treeview/treeview/treeview.component", ['@angular/core', "ms-treeview/shared/text-treenode", "ms-treeview/shared/tree-node-click.event"], function(exports_5, context_5) {
     "use strict";
     var __moduleName = context_5 && context_5.id;
-    var core_1, core_2, tree_node_interface_1, text_treenode_1, tree_node_click_event_1;
+    var core_1, core_2, text_treenode_1, tree_node_click_event_1;
     var TreeViewComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
                 core_2 = core_1_1;
-            },
-            function (tree_node_interface_1_1) {
-                tree_node_interface_1 = tree_node_interface_1_1;
             },
             function (text_treenode_1_1) {
                 text_treenode_1 = text_treenode_1_1;
@@ -177,7 +192,7 @@ System.register("ms-treeview/treeview/treeview.component", ['@angular/core', "ms
                 };
                 __decorate([
                     core_2.Input(), 
-                    __metadata('design:type', tree_node_interface_1.TreeNodeInterface)
+                    __metadata('design:type', Object)
                 ], TreeViewComponent.prototype, "node", void 0);
                 __decorate([
                     core_2.Output(), 
@@ -197,16 +212,11 @@ System.register("ms-treeview/treeview/treeview.component", ['@angular/core', "ms
         }
     }
 });
-System.register("ms-treeview", ["ms-treeview/shared/tree-node.interface", "ms-treeview/shared/tree-node", "ms-treeview/shared/tree-node-click.event", "ms-treeview/shared/text-treenode", "ms-treeview/treeview/treeview.component"], function(exports_6, context_6) {
+System.register("ms-treeview", ["ms-treeview/shared/tree-node", "ms-treeview/shared/tree-node-click.event", "ms-treeview/shared/text-treenode", "ms-treeview/treeview/treeview.component"], function(exports_6, context_6) {
     "use strict";
     var __moduleName = context_6 && context_6.id;
     return {
         setters:[
-            function (tree_node_interface_2_1) {
-                exports_6({
-                    "TreeNodeInterface": tree_node_interface_2_1["TreeNodeInterface"]
-                });
-            },
             function (tree_node_2_1) {
                 exports_6({
                     "TreeNode": tree_node_2_1["TreeNode"]

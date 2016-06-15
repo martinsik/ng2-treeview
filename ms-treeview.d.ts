@@ -1,7 +1,10 @@
 declare module "ms-treeview/shared/tree-node.interface" {
-    export class TreeNodeInterface {
+    export interface TreeNodeInterface {
         parent: TreeNodeInterface;
         children: TreeNodeInterface[];
+        add(node: TreeNodeInterface | TreeNodeInterface[]): void;
+        remove(node: TreeNodeInterface): void;
+        hasDirectAncestor(node: TreeNodeInterface): void;
     }
 }
 declare module "ms-treeview/shared/tree-node" {
@@ -12,6 +15,7 @@ declare module "ms-treeview/shared/tree-node" {
         constructor(nodes?: TreeNodeInterface | TreeNodeInterface[]);
         parent: TreeNodeInterface;
         children: TreeNodeInterface[];
+        hasDirectAncestor(node: TreeNodeInterface): boolean;
         add(nodes: TreeNodeInterface | TreeNodeInterface[]): void;
         remove(node: TreeNodeInterface): boolean;
     }
