@@ -1,8 +1,8 @@
-export * from './src/shared/tree-node.interface';
-export * from './src/shared/tree-node';
-export * from './src/shared/tree-node-click.event';
-export * from './src/shared/text-treenode';
-export * from './src/treeview/treeview.component';
+export * from './ms-treeview/shared/tree-node.interface';
+export * from './ms-treeview/shared/tree-node';
+export * from './ms-treeview/shared/tree-node-click.event';
+export * from './ms-treeview/shared/text-treenode';
+export * from './ms-treeview/treeview/treeview.component';
 declare var _default: {
     directives: [any][];
 };

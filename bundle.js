@@ -5,7 +5,7 @@ var SystemBuilder = require('systemjs-builder');
 
 // https://github.com/SitePen/dts-generator
 
-var builder = new SystemBuilder('..', {
+var builder = new SystemBuilder('.', {
     paths: {
         '*': '*.js'
     },
@@ -14,12 +14,12 @@ var builder = new SystemBuilder('..', {
         'rxjs/*': { build: false }
     }
 });
-var result = builder.bundle('ms-treeview/ms-treeview', '.build/ms-treeview.bundle.js');
+var result = builder.bundle('ms-treeview', '.build/ms-treeview.bundle.js');
 
 result.then(function(e) {
     gulp.src('.build/ms-treeview.bundle.js')
         .pipe(embedTemplates({
-            basePath: './src',
+            basePath: './ms-treeview',
             minimize: {
                 quotes: true,
                 empty: true

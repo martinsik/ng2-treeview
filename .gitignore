@@ -33,9 +33,9 @@ node_modules
 .node_repl_history
 
 .build
-src/**/*.js
-src/**/*.js.map
-src/**/*.d.ts
+ms-treeview/**/*.js
+ms-treeview/**/*.js.map
+ms-treeview/**/*.d.ts
 demo/**/*.js
 demo/**/*.js.map
 demo/**/*.d.ts

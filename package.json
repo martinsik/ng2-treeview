@@ -1,10 +1,10 @@
 {
   "name": "ms-treeview",
   "version": "0.0.1",
-  "typings": "ms-treeview.d.ts",
   "main": "ms-treeview.js",
+  "typings": "ms-treeview.d.ts",
   "scripts": {
-    "clean": "rm -rf ./.build && find ./src -name \"*.js\" -type f -delete -o -name \"*.d.ts\" -type f -delete -o -name \"*.js.map\" -type f -delete && rm -f ms-treeview.js*",
+    "clean": "rm -rf ./.build && find ./ms-treeview -name \"*.js\" -type f -delete -o -name \"*.d.ts\" -type f -delete -o -name \"*.js.map\" -type f -delete && rm -f ms-treeview.js*",
     "start": "npm run build-demo && concurrently \"npm run tsc:wd\" \"npm run lite\" ",
     "lite": "lite-server",
     "build-demo": "npm run build && cd demo && npm i && npm install ../ && cd .. && ln -fhs ../typings demo/typings && npm run tscd",
