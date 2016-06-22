@@ -35,6 +35,10 @@ node_modules
 .build
 src/**/*.js
 src/**/*.js.map
+src/**/*.d.ts
 demo/**/*.js
 demo/**/*.js.map
+demo/**/*.d.ts
+demo/node_modules
 typings/
+ms-treeview.js*

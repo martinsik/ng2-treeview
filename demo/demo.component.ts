@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TextTreeNode, TreeViewComponent} from 'ms-treeview';
+import {TextTreeNode, TreeViewComponent} from 'ms-treeview/ms-treeview';
 
 @Component({
     selector: 'demo',

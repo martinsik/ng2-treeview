@@ -7,7 +7,7 @@ import {TreeNodeClickEvent} from "../shared/tree-node-click.event";
 @Component({
     selector: 'ms-treeview',
     directives: [ TreeViewComponent ],
-    templateUrl: 'ms-treeview/treeview/treeview.component.html'
+    templateUrl: 'treeview/treeview.component.html'
 })
 export class TreeViewComponent
 {
