@@ -230,8 +230,6 @@ System.register("ms-treeview", ["./ms-treeview/shared/tree-node", "./ms-treeview
     }, function(treeview_component_1_1) {
       exportStar_1(treeview_component_1_1);
     }],
-    execute: function() {
-      exports_1("default", _default);
-    }
+    execute: function() {}
   };
 });
