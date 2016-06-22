@@ -1,7 +1,6 @@
 {
   "name": "ms-treeview",
   "version": "0.0.1",
-  "main": "ms-treeview.js",
   "typings": "ms-treeview.d.ts",
   "scripts": {
     "clean": "rm -rf ./.build && find ./ms-treeview -name \"*.js\" -type f -delete -o -name \"*.d.ts\" -type f -delete -o -name \"*.js.map\" -type f -delete && rm -f ms-treeview.js*",
