@@ -1,0 +1,10 @@
+.idea
+typings
+.build
+demo
+*.ts
+*.js.map
+!*.d.ts
+/ms-treeview/**/*.ts
+/ms-treeview/**/*.js
+!/ms-treeview/**/*.d.ts
