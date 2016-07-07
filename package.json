@@ -6,7 +6,7 @@
     "clean": "rm -rf ./.build && find ./ms-treeview -name \"*.js\" -type f -delete -o -name \"*.d.ts\" -type f -delete -o -name \"*.js.map\" -type f -delete && rm -f ms-treeview.js*",
     "start": "npm run build-demo && concurrently \"npm run tsc:wd\" \"npm run lite\" ",
     "lite": "lite-server",
-    "build-demo": "npm run build && cp bundles/ms-treeview.js demo && npm run tscd",
+    "build-demo": "npm run build && cp bundles/ms-treeview.js demo && rm -rf demo/node_modules/ms-treeview && cd demo && npm i && cd .. && npm run tscd",
     "build": "npm run clean && npm run typings && npm run tsc && node bundle.js && mkdir -p ./bundles && cp .build/ms-treeview.js ./bundles/ms-treeview.js",
     "tsc": "tsc --declaration",
     "tscd": "tsc --project demo",
