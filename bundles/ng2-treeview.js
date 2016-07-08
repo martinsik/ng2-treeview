@@ -1,4 +1,4 @@
-System.register("ms-treeview/shared/text-treenode", ["./tree-node", "./tree-node-options"], function(exports_1, context_1) {
+System.register("ng2-treeview/shared/text-treenode", ["./tree-node", "./tree-node-options"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var __extends = (this && this.__extends) || function(d, b) {
@@ -33,7 +33,7 @@ System.register("ms-treeview/shared/text-treenode", ["./tree-node", "./tree-node
   };
 });
 
-System.register("ms-treeview/shared/tree-node-click.event", [], function(exports_1, context_1) {
+System.register("ng2-treeview/shared/tree-node-click.event", [], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var TreeNodeClickEvent;
@@ -52,7 +52,7 @@ System.register("ms-treeview/shared/tree-node-click.event", [], function(exports
   };
 });
 
-System.register("ms-treeview/shared/tree-node-options", [], function(exports_1, context_1) {
+System.register("ng2-treeview/shared/tree-node-options", [], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var TreeNodeOptions;
@@ -65,8 +65,10 @@ System.register("ms-treeview/shared/tree-node-options", [], function(exports_1, 
             options = {};
           }
           this.showExpandCollapse = true;
-          if (options['showExpandCollapse']) {
-            this.showExpandCollapse = options['showExpandCollapse'];
+          for (var _i = 0,
+              _a = Object.keys(options); _i < _a.length; _i++) {
+            var key = _a[_i];
+            this[key] = options[key];
           }
         }
         return TreeNodeOptions;
@@ -76,30 +78,26 @@ System.register("ms-treeview/shared/tree-node-options", [], function(exports_1, 
   };
 });
 
-System.register("ms-treeview/shared/tree-node", [], function(exports_1, context_1) {
+System.register("ng2-treeview/shared/tree-node", ["./tree-node-options"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
+  var tree_node_options_1;
   var TreeNode;
   return {
-    setters: [],
+    setters: [function(tree_node_options_1_1) {
+      tree_node_options_1 = tree_node_options_1_1;
+    }],
     execute: function() {
       TreeNode = (function() {
         function TreeNode(options, nodes) {
           if (nodes === void 0) {
             nodes = [];
           }
-          this.options = options;
           this.childrenNodes = [];
           if (!Array.isArray(nodes)) {
             nodes = [nodes];
           }
-          for (var _i = 0,
-              _a = nodes; _i < _a.length; _i++) {
-            var node = _a[_i];
-            if (!node.options) {
-              node.options = options;
-            }
-          }
+          this.options = options instanceof tree_node_options_1.TreeNodeOptions ? options : options;
           if (nodes) {
             this.add(nodes);
           }
@@ -171,7 +169,7 @@ System.register("ms-treeview/shared/tree-node", [], function(exports_1, context_
   };
 });
 
-System.register("ms-treeview/shared/component-tree-node", ["./tree-node-options", "./tree-node"], function(exports_1, context_1) {
+System.register("ng2-treeview/shared/component-tree-node", ["./tree-node-options", "./tree-node"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var __extends = (this && this.__extends) || function(d, b) {
@@ -206,7 +204,7 @@ System.register("ms-treeview/shared/component-tree-node", ["./tree-node-options"
   };
 });
 
-System.register("ms-treeview/treeview/treeview.component", ["@angular/core", "../shared/text-treenode", "../shared/tree-node-click.event", "../shared/component-tree-node"], function(exports_1, context_1) {
+System.register("ng2-treeview/treeview/treeview.component", ["@angular/core", "../shared/text-treenode", "../shared/tree-node-click.event", "../shared/component-tree-node"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
@@ -254,6 +252,7 @@ System.register("ms-treeview/treeview/treeview.component", ["@angular/core", "..
             this.componentResolver.resolveComponent(node.component).then(function(factory) {
               var component = _this.componentAnchor.createComponent(factory);
               _this.componentAnchor.insert(component.hostView);
+              component.instance.options = node.options;
             });
           }
         };
@@ -292,7 +291,7 @@ System.register("ms-treeview/treeview/treeview.component", ["@angular/core", "..
           selector: 'ms-treeview',
           directives: [TreeViewComponent],
           styles: ["\n        .line {\n            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFMUU2NzY3OTNDN0IxMUU2QkQwRUFDNjIyQ0U5OUE0MyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFMUU2NzY3QTNDN0IxMUU2QkQwRUFDNjIyQ0U5OUE0MyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkUxRTY3Njc3M0M3QjExRTZCRDBFQUM2MjJDRTk5QTQzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkUxRTY3Njc4M0M3QjExRTZCRDBFQUM2MjJDRTk5QTQzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+D/OyiwAAAAZQTFRFHR0bAAAABUcrJwAAAAJ0Uk5T/wDltzBKAAAAIklEQVR42mJgRAMMBPiMhDSMmjDMTECHpJowqmAIKwAIMAAbmAPxv65NVAAAAABJRU5ErkJggg==');\n            background-position: center center;\n            width: 16px;\n            height: 16px;\n            display: inline-block;\n            position: absolute;\n            margin-left: -20px;\n        }\n    "],
-          template: "\n        <span *ngIf=\"node.options.showExpandCollapse && depth > 0\" class=\"line\"></span>\n        \n        <span *ngIf=\"isTextType\" (click)=\"emitClick($event)\">\n            {{ node.text }}\n        </span>\n        <span *ngIf=\"isComponentType\" #componentAnchor>\n        </span>\n        <span *ngIf=\"isContentType\">\n            Not implemented yet\n        </span>\n        <ms-treeview *ngFor=\"let child of node.children\" [node]=\"child\" [depth]=\"depth + 1\" (textNodeClick)=\"childTextNodeClick($event)\"></ms-treeview>\n    "
+          template: "\n        <span *ngIf=\"node.options.showExpandCollapse && depth > 0\" class=\"line\"></span>\n        \n        <span *ngIf=\"isTextType\" (click)=\"emitClick($event)\">{{ node.text }}</span>\n        <span *ngIf=\"isComponentType\" #componentAnchor></span>\n        <span *ngIf=\"isContentType\">Not implemented yet</span>\n        \n        <ms-treeview *ngFor=\"let child of node.children\" [node]=\"child\" [depth]=\"depth + 1\" (textNodeClick)=\"childTextNodeClick($event)\"></ms-treeview>\n    "
         }), __metadata('design:paramtypes', [core_1.ComponentResolver])], TreeViewComponent);
         return TreeViewComponent;
       }());
@@ -301,7 +300,7 @@ System.register("ms-treeview/treeview/treeview.component", ["@angular/core", "..
   };
 });
 
-System.register("ms-treeview", ["./ms-treeview/shared/tree-node", "./ms-treeview/shared/tree-node-click.event", "./ms-treeview/shared/text-treenode", "./ms-treeview/shared/component-tree-node", "./ms-treeview/shared/tree-node-options", "./ms-treeview/treeview/treeview.component"], function(exports_1, context_1) {
+System.register("ng2-treeview", ["./ng2-treeview/shared/tree-node", "./ng2-treeview/shared/tree-node-click.event", "./ng2-treeview/shared/text-treenode", "./ng2-treeview/shared/component-tree-node", "./ng2-treeview/shared/tree-node-options", "./ng2-treeview/treeview/treeview.component"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   function exportStar_1(m) {

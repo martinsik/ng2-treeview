@@ -5,6 +5,6 @@ demo
 *.ts
 *.js.map
 !*.d.ts
-/ms-treeview/**/*.ts
-/ms-treeview/**/*.js
-!/ms-treeview/**/*.d.ts
+/ng2-treeview/**/*.ts
+/ng2-treeview/**/*.js
+!/ng2-treeview/**/*.d.ts

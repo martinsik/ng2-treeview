@@ -5,7 +5,7 @@ import {TreeNode} from "./tree-node";
 
 export class ComponentTreeNode extends TreeNode {
 
-    constructor(public component: Type, options?: TreeNodeOptions, children?: TreeNodeInterface|TreeNodeInterface[]) {
+    constructor(public component: Type, options?: TreeNodeOptions|Object, children?: TreeNodeInterface|TreeNodeInterface[]) {
         super(options ? options : new TreeNodeOptions(), children);
     }
 

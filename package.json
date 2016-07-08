@@ -1,13 +1,13 @@
 {
-  "name": "ms-treeview",
+  "name": "ng2-treeview",
   "version": "0.0.1",
-  "typings": "ms-treeview.d.ts",
+  "typings": "ng2-treeview.d.ts",
   "scripts": {
-    "clean": "rm -rf ./.build && find ./ms-treeview -name \"*.js\" -type f -delete -o -name \"*.d.ts\" -type f -delete -o -name \"*.js.map\" -type f -delete && rm -f ms-treeview.js*",
+    "clean": "rm -rf ./.build && find ./ng2-treeview -name \"*.js\" -type f -delete -o -name \"*.d.ts\" -type f -delete -o -name \"*.js.map\" -type f -delete && rm -f ng2-treeview.js*",
     "start": "npm run build-demo && concurrently \"npm run tsc:wd\" \"npm run lite\" ",
     "lite": "lite-server",
-    "build-demo": "npm run build && cp bundles/ms-treeview.js demo && rm -rf demo/node_modules/ms-treeview && cd demo && npm i && cd .. && npm run tscd",
-    "build": "npm run clean && npm run typings && npm run tsc && node bundle.js && mkdir -p ./bundles && cp .build/ms-treeview.js ./bundles/ms-treeview.js",
+    "build-demo": "npm run build && cp bundles/ng2-treeview.js demo && rm -rf demo/node_modules/ng2-treeview && cd demo && npm i && cd .. && npm run tscd",
+    "build": "npm run clean && npm run typings && npm run tsc && node make.js && mkdir -p ./bundles && cp .build/ng2-treeview.js ./bundles/ng2-treeview.js",
     "tsc": "tsc --declaration",
     "tscd": "tsc --project demo",
     "tsc:w": "tsc -w",

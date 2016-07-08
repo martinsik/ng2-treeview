@@ -4,8 +4,8 @@ export class TreeNodeOptions {
     showExpandCollapse: boolean = true;
 
     constructor(options: Object = {}) {
-        if (options['showExpandCollapse']) {
-            this.showExpandCollapse = options['showExpandCollapse'];
+        for (let key of Object.keys(options)) {
+            this[key] = options[key];
         }
     }
 

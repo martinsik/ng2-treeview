@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TextTreeNode, ComponentTreeNode, TreeViewComponent, TreeNodeOptions} from 'ms-treeview';
+import {TextTreeNode, ComponentTreeNode, TreeViewComponent, TreeNodeOptions} from 'ng2-treeview';
 
 @Component({
     selector: 'demo-tree-node',
@@ -8,11 +8,16 @@ import {TextTreeNode, ComponentTreeNode, TreeViewComponent, TreeNodeOptions} fro
         '(mouseout)': 'blur()',
     },
     template: `
-        <span (click)="nodeClick($event)" [style.background]="hovered ? 'red' : 'yellow'">demo-tree-node</span>
+        <span (click)="nodeClick($event)" [style.background]="hovered ? 'green' : 'transparent'">{{ text }}</span>
     `
 })
 export class DemoTreeNodeComponent {
     hovered: boolean = false;
+    text: string;
+
+    set options(options) {
+        this.text = options.text;
+    }
 
     nodeClick(event) {
         console.log(this);
@@ -33,7 +38,6 @@ export class DemoTreeNodeComponent {
         <h1>ms-treeview demo</h1>
         <h2>Text tree view</h2>
         <ms-treeview [node]="textTreeView" (textNodeClick)="textNodeClick($event)"></ms-treeview>
-        
         <ms-treeview [node]="textTreeView2" (textNodeClick)="textNodeClick($event)"></ms-treeview>
         
         <h2>Custom component tree view</h2>
@@ -59,23 +63,23 @@ export class DemoComponent {
     });
     textTreeView2 = new TextTreeNode('Root node', null, [
         new TextTreeNode('Child node #1'),
-        new TextTreeNode('Child node #2'),
-        new TextTreeNode('Child node #3'),
-        new TextTreeNode('Child node #4', this.options, [
-            new TextTreeNode('Hello'),
-            new TextTreeNode('Ahoy'),
-            new TextTreeNode('Hola'),
+        new TextTreeNode('Child node #2', null, [
+            new TextTreeNode('Hello', this.options),
+            new TextTreeNode('Ahoy', this.options, [
+                new TextTreeNode('Nested'),
+            ]),
+            new TextTreeNode('Hola', this.options),
         ]),
-        new TextTreeNode('Child node #5'),
+        new TextTreeNode('Child node #3'),
     ]);
 
-    componentTreeView = new ComponentTreeNode(DemoTreeNodeComponent, null, [
-        new ComponentTreeNode(DemoTreeNodeComponent),
-        new ComponentTreeNode(DemoTreeNodeComponent),
-        new ComponentTreeNode(DemoTreeNodeComponent, null, [
-            new ComponentTreeNode(DemoTreeNodeComponent),
+    componentTreeView = new ComponentTreeNode(DemoTreeNodeComponent, new TreeNodeOptions({ text: "demo-tree-component 1" }), [
+        new ComponentTreeNode(DemoTreeNodeComponent, new TreeNodeOptions({ text: "demo-tree-component 2" })),
+        new ComponentTreeNode(DemoTreeNodeComponent, new TreeNodeOptions({ text: "demo-tree-component 3" })),
+        new ComponentTreeNode(DemoTreeNodeComponent, new TreeNodeOptions({ text: "demo-tree-component 4" }), [
+            new ComponentTreeNode(DemoTreeNodeComponent, new TreeNodeOptions({ text: "demo-tree-component 5" })),
         ]),
-        new ComponentTreeNode(DemoTreeNodeComponent),
+        new ComponentTreeNode(DemoTreeNodeComponent, new TreeNodeOptions({ text: "demo-tree-component 6" })),
     ]);
 
     textNodeClick(event) {

@@ -33,12 +33,14 @@ node_modules
 .node_repl_history
 
 .build
-ms-treeview/**/*.js
-ms-treeview/**/*.js.map
-ms-treeview/**/*.d.ts
+ng2-treeview/**/*.js
+ng2-treeview/**/*.js.map
+ng2-treeview/**/*.d.ts
 demo/**/*.js
 demo/**/*.js.map
 demo/**/*.d.ts
 demo/node_modules
+demo/typings
 typings/
-/ms-treeview.js*
+/ng2-treeview.js*
+/ng2-treeview.d.ts

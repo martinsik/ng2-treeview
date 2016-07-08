@@ -1,4 +1,3 @@
-import {EventEmitter} from '@angular/core';
 import {TreeNodeInterface} from "./tree-node.interface";
 import {TreeNodeOptions} from "./tree-node-options";
 
@@ -6,17 +5,14 @@ export class TreeNode implements TreeNodeInterface {
 
     private parentNode: TreeNodeInterface;
     private childrenNodes: TreeNodeInterface[] = [];
+    options: TreeNodeOptions;
 
-    constructor(public options: TreeNodeOptions, nodes: TreeNodeInterface|TreeNodeInterface[] = []) {
+    constructor(options: TreeNodeOptions|Object, nodes: TreeNodeInterface|TreeNodeInterface[] = []) {
         if (!Array.isArray(nodes)) {
             nodes = [<TreeNodeInterface>nodes];
         }
-
-        for (let node of <TreeNodeInterface[]>nodes) {
-            if (!node.options) {
-                node.options = options;
-            }
-        }
+        
+        this.options = options instanceof TreeNodeOptions ? options : <TreeNodeOptions>options;
 
         if (nodes) {
             this.add(nodes);

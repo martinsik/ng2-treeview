@@ -23,14 +23,10 @@ import {TreeViewInterface} from "./treeview.interface";
     template: `
         <span *ngIf="node.options.showExpandCollapse && depth > 0" class="line"></span>
         
-        <span *ngIf="isTextType" (click)="emitClick($event)">
-            {{ node.text }}
-        </span>
-        <span *ngIf="isComponentType" #componentAnchor>
-        </span>
-        <span *ngIf="isContentType">
-            Not implemented yet
-        </span>
+        <span *ngIf="isTextType" (click)="emitClick($event)">{{ node.text }}</span>
+        <span *ngIf="isComponentType" #componentAnchor></span>
+        <span *ngIf="isContentType">Not implemented yet</span>
+        
         <ms-treeview *ngFor="let child of node.children" [node]="child" [depth]="depth + 1" (textNodeClick)="childTextNodeClick($event)"></ms-treeview>
     `
 })
@@ -51,8 +47,7 @@ export class TreeViewComponent implements TreeViewInterface, AfterViewInit
                 var component = this.componentAnchor.createComponent(factory);
                 this.componentAnchor.insert(component.hostView);
 
-                // component.instance
-                // component.cl
+                component.instance.options = node.options;
             });
         }
     }

@@ -14,18 +14,18 @@ var builder = new SystemBuilder('.', {
         'rxjs/*': { build: false }
     }
 });
-var result = builder.bundle('ms-treeview', '.build/ms-treeview.bundle.js');
+var result = builder.bundle('ng2-treeview', '.build/ng2-treeview.bundle.js');
 
 result.then(function(e) {
-    gulp.src('.build/ms-treeview.bundle.js')
+    gulp.src('.build/ng2-treeview.bundle.js')
         .pipe(embedTemplates({
-            basePath: './ms-treeview',
+            basePath: './ng2-treeview',
             minimize: {
                 quotes: true,
                 empty: true
             }
         }))
-        .pipe(rename('ms-treeview.js'))
+        .pipe(rename('ng2-treeview.js'))
         .pipe(gulp.dest('.build'));
 });
 
