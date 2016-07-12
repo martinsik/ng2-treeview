@@ -1,6 +1,6 @@
 # ng2-treeview
 
-Angular2 independent component for displaying tree structures.
+Angular2 component for displaying tree structures.
 
 ## Installation
 
