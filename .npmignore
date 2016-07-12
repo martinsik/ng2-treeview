@@ -3,7 +3,7 @@ typings
 .build
 demo
 *.ts
-*.js.map
+*.js
 !*.d.ts
 /ng2-treeview/**/*.ts
 /ng2-treeview/**/*.js

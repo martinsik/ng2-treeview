@@ -35,13 +35,13 @@ export class DemoTreeNodeComponent {
     selector: 'demo',
     directives: [TreeViewComponent],
     template: `
-        <h1>ms-treeview demo</h1>
+        <h1>ng2-treeview demo</h1>
         <h2>Text tree view</h2>
-        <ms-treeview [node]="textTreeView" (textNodeClick)="textNodeClick($event)"></ms-treeview>
-        <ms-treeview [node]="textTreeView2" (textNodeClick)="textNodeClick($event)"></ms-treeview>
+        <ng2-treeview [node]="textTreeView" (textNodeClick)="textNodeClick($event)"></ng2-treeview>
+        <ng2-treeview [node]="textTreeView2" (textNodeClick)="textNodeClick($event)"></ng2-treeview>
         
         <h2>Custom component tree view</h2>
-        <ms-treeview [node]="componentTreeView"></ms-treeview>
+        <ng2-treeview [node]="componentTreeView"></ng2-treeview>
     `
 })
 export class DemoComponent {

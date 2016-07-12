@@ -1,6 +1,6 @@
 {
   "name": "ng2-treeview",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typings": "ng2-treeview.d.ts",
   "scripts": {
     "clean": "rm -rf ./.build && find ./ng2-treeview -name \"*.js\" -type f -delete -o -name \"*.d.ts\" -type f -delete -o -name \"*.js.map\" -type f -delete && rm -f ng2-treeview.js*",

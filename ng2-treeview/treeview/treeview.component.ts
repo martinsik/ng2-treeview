@@ -7,7 +7,7 @@ import {ComponentTreeNode} from "../shared/component-tree-node";
 import {TreeViewInterface} from "./treeview.interface";
 
 @Component({
-    selector: 'ms-treeview',
+    selector: 'ng2-treeview',
     directives: [ TreeViewComponent ],
     styles: [`
         .line {
@@ -27,7 +27,7 @@ import {TreeViewInterface} from "./treeview.interface";
         <span *ngIf="isComponentType" #componentAnchor></span>
         <span *ngIf="isContentType">Not implemented yet</span>
         
-        <ms-treeview *ngFor="let child of node.children" [node]="child" [depth]="depth + 1" (textNodeClick)="childTextNodeClick($event)"></ms-treeview>
+        <ng2-treeview *ngFor="let child of node.children" [node]="child" [depth]="depth + 1" (textNodeClick)="childTextNodeClick($event)"></ng2-treeview>
     `
 })
 export class TreeViewComponent implements TreeViewInterface, AfterViewInit
@@ -47,7 +47,7 @@ export class TreeViewComponent implements TreeViewInterface, AfterViewInit
                 var component = this.componentAnchor.createComponent(factory);
                 this.componentAnchor.insert(component.hostView);
 
-                component.instance.options = node.options;
+                component.instance.node = node;
             });
         }
     }
