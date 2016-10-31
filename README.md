@@ -43,7 +43,7 @@ See [demo project](https://github.com/martinsik/ng2-treeview/blob/master/demo/de
         directives: [TreeViewComponent],
         template: `
             <h1>ng2-treeview - Text nodes</h1>
-            <ng2-treeview [node]="textTreeView" (textNodeClick)="onTextNodeClick($event)"></ms-treeview>
+            <ng2-treeview [node]="textTreeView" (textNodeClick)="onTextNodeClick($event)"></ng2-treeview>
         `
     })
     export class DemoComponent {
